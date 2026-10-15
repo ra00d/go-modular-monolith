@@ -1,0 +1,12 @@
+observability:
+  metrics:
+    enabled: true
+    path: /metrics
+
+  tracing:
+    enabled: true
+    exporter: otlp
+    endpoint: tempo:4317
+
+  profiling:
+    enabled: false

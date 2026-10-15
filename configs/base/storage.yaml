@@ -1,0 +1,5 @@
+storage:
+  default: local
+
+  local:
+    path: ./storage

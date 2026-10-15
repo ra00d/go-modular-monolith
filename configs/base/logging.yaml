@@ -1,0 +1,7 @@
+logging:
+  level: info
+  format: json
+
+  file:
+    enabled: false
+    path: ./storage/logs/app.log

@@ -1,0 +1,14 @@
+watermill:
+  transport: postgres
+
+  command_bus:
+    enabled: true
+
+  event_bus:
+    enabled: true
+
+  router:
+    close_timeout: 30s
+
+  postgres:
+    schema: watermill

@@ -1,0 +1,11 @@
+http:
+  host: 0.0.0.0
+  port: 8080
+  domain: example.com
+  read_timeout: 30s
+  write_timeout: 30s
+  idle_timeout: 120s
+openapi:
+  endpoint: /api-docs
+  path: /api-docs-json
+  auth: false

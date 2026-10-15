@@ -1,0 +1,26 @@
+jwt:
+  secret_key: "test"
+  issure: "random"
+  # In minutes
+  ttl: 1440
+
+session:
+  provider: redis
+  cookie_name: erp_session
+  max_age: 24h
+  secure: true
+  http_only: true
+  same_site: lax
+auth:
+  login_path: /auth/login
+  logout_path: /auth/logout
+  session_timeout: 8h
+  password:
+    min_length: 8
+    require_uppercase: true
+    require_lowercase: true
+    require_number: true
+    require_special_char: true
+tenancy:
+  enabled: false
+  mode: single

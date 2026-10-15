@@ -1,0 +1,8 @@
+redis:
+  enabled: true
+  host: localhost
+  port: 6379
+  password: ""
+  username: ""
+  db: 0
+  pool_size: 20

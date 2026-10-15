@@ -1,0 +1,42 @@
+modules:
+  users:
+    enabled: true
+
+  roles:
+    enabled: true
+
+  permissions:
+    enabled: true
+
+  customers:
+    enabled: true
+
+  suppliers:
+    enabled: true
+
+  inventory:
+    enabled: true
+
+  products:
+    enabled: true
+
+  sales:
+    enabled: true
+
+  purchases:
+    enabled: true
+
+  accounting:
+    enabled: true
+
+  hr:
+    enabled: true
+
+  payroll:
+    enabled: true
+
+  crm:
+    enabled: true
+
+  reports:
+    enabled: true

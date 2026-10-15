@@ -1,0 +1,14 @@
+integrations:
+  enabled: false
+  payment:
+    enabled: false
+
+    stripe:
+      secret_key: ""
+
+  whatsapp:
+    enabled: false
+    token: ""
+
+  webhook:
+    enabled: false

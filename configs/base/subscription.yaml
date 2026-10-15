@@ -1,0 +1,4 @@
+subscription:
+  default_plan_code: "free"
+  entitlement_cache_ttl_seconds: 300
+  trial_reminder_days: 3

@@ -1,0 +1,25 @@
+app:
+  name: erp
+  env: production
+  version: 1.0.0
+  timezone: UTC
+  debug: false
+audit:
+  enabled: true
+  retention_days: 365
+feature_flags:
+  inventory: true
+  crm: true
+  accounting: true
+  manufacturing: false
+  hr: true
+backup:
+  enabled: true
+
+  database:
+    cron: "0 2 * * *"
+    retention_days: 30
+
+  storage:
+    cron: "0 3 * * *"
+    retention_days: 30

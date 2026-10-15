@@ -1,0 +1,13 @@
+security:
+  cors:
+    enabled: true
+    allow_origins:
+      - "127.0.0.1:3000"
+      - "http://localhost:3000"
+      - "http://localhost:3001"
+      - "http://localhost:5173"
+
+  rate_limit:
+    enabled: true
+    requests: 100
+    duration: 1m

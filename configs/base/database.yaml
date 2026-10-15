@@ -1,0 +1,11 @@
+database:
+  driver: postgres
+  host: localhost
+  port: 5433
+  database: erp
+  username: postgres
+  password: secret
+  ssl_mode: disable
+  max_open_conns: 50
+  max_idle_conns: 10
+  conn_max_lifetime: 1h

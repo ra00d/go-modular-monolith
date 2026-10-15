@@ -1,0 +1,21 @@
+messaging:
+  email:
+    enabled: true
+    provider: smtp
+
+    smtp:
+      host: smtp.example.com
+      port: 587
+      username: noreply@example.com
+      password: secret
+      from_name: ERP
+      from_email: noreply@example.com
+
+  sms:
+    enabled: false
+    provider: twilio
+
+    twilio:
+      account_sid: ""
+      auth_token: ""
+      from_number: ""

@@ -1,0 +1,5 @@
+queues:
+  enabled: false
+  workers: 10
+  retry_count: 3
+  retry_delay: 30s

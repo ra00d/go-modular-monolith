@@ -1,0 +1,11 @@
+jobs:
+  enabled: false
+
+  cleanup_logs:
+    cron: "0 0 * * *"
+
+  recalculate_inventory:
+    cron: "*/15 * * * *"
+
+  generate_reports:
+    cron: "0 1 * * *"

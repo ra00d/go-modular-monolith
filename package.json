@@ -1,0 +1,23 @@
+{
+  "name": "modular-monolith",
+  "type": "module",
+  "private": true,
+  "workspaces": ["packages/*", "apps/*"],
+  "scripts": {
+    "i18n-gen": "bun run ./scripts/generate-localization.ts "
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.14",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "openapi-typescript": "^7.13.0",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "@inlang/cli": "^3.3.4",
+    "@inlang/paraglide-js": "^2.25.0",
+    "openapi-fetch": "^0.17.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  }
+}
