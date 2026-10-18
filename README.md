@@ -14,7 +14,7 @@ of the codebase.
 - **Modular monolith** — one deployable binary, many independent domain modules.
 - **Dependency injection** via [Uber Fx](https://uber-go.github.io/fx/); every module exposes an `fx.Module` that is composed in `cmd/server`.
 - **CQRS & messaging** built on [Watermill](https://watermill.io/) with a durable PostgreSQL transport (or in-memory for dev), including a command/event bus, retries, and a poison queue.
-- **Persistence** with PostgreSQL (`pgx` + `sqlx`), schema migrations via [Goose](https://github.com/pressly/goose), and type-safe query generation with [sqlc](https://sqlc.dev/) / [go-jet](https://github.com/go-jet/jet).
+- **Persistence** with PostgreSQL (`pgx` + `sqlx`), schema migrations via [Goose](https://github.com/pressly/goose), and type-safe sql generation with [go-jet](https://github.com/go-jet/jet).
 - **Authentication & authorization** — JWT auth, sessions in Redis, plus role-based (RBAC) and attribute-based (ABAC) access control with audit logging, API keys, and security events.
 - **Multi-tenancy** primitives (single / shared / dedicated modes, `X-TENANT-ID` header).
 - **Backend jobs** via a background job runner backed by [River](https://riverqueue.com/) and Redis.
@@ -28,34 +28,34 @@ of the codebase.
 
 **Backend**
 
-| Area | Tools |
-| --- | --- |
-| Language | Go 1.27 |
-| HTTP / API | [GoFrame v2](https://goframe.org/) (`ghttp`) with automatic OpenAPI |
-| DI | Uber Fx |
-| Config | [koanf](https://github.com/knadh/koanf) (YAML) |
-| Database | PostgreSQL (`pgx`, `sqlx`), migrations via Goose |
-| Code generation | sqlc, go-jet |
-| Messaging | Watermill (`watermill-sql` PostgreSQL transport) |
-| Jobs | River |
-| Cache / sessions | Redis |
-| Auth | `golang-jwt`, RBAC + ABAC |
-| Storage | Local filesystem, AWS S3 |
-| Observability | Zap, GoFrame `glog`, OpenTelemetry |
+| Area             | Tools                                                               |
+| ---------------- | ------------------------------------------------------------------- |
+| Language         | Go 1.27                                                             |
+| HTTP / API       | [GoFrame v2](https://goframe.org/) (`ghttp`) with automatic OpenAPI |
+| DI               | Uber Fx                                                             |
+| Config           | [koanf](https://github.com/knadh/koanf) (YAML)                      |
+| Database         | PostgreSQL (`pgx`, `sqlx`), migrations via Goose                    |
+| Code generation  | go-jet                                                              |
+| Messaging        | Watermill (`watermill-sql` PostgreSQL transport)                    |
+| Jobs             | River                                                               |
+| Cache / sessions | Redis                                                               |
+| Auth             | `golang-jwt`, RBAC + ABAC                                           |
+| Storage          | Local filesystem, AWS S3                                            |
+| Observability    | Zap, GoFrame `glog`, OpenTelemetry                                  |
 
 **Frontend**
 
-| Area | Tools |
-| --- | --- |
-| Framework | [TanStack Start](https://tanstack.com/start) + React 19 |
-| Routing / data | TanStack Router, TanStack Query, TanStack Table |
-| Build | Vite 8, Bun workspaces |
-| Styling / UI | Tailwind CSS v4, Base UI, Lucide icons |
-| Forms / validation | React Hook Form + Zod |
-| State | Zustand |
-| API client | `openapi-fetch` / `openapi-react-query` (generated from the Go OpenAPI spec) |
-| Quality | Biome |
-| i18n | Paraglide |
+| Area               | Tools                                                                        |
+| ------------------ | ---------------------------------------------------------------------------- |
+| Framework          | [TanStack Start](https://tanstack.com/start) + React 19                      |
+| Routing / data     | TanStack Router, TanStack Query, TanStack Table                              |
+| Build              | Vite 8, Bun workspaces                                                       |
+| Styling / UI       | Tailwind CSS v4, Base UI, Lucide icons                                       |
+| Forms / validation | React Hook Form + Zod                                                        |
+| State              | Zustand                                                                      |
+| API client         | `openapi-fetch` / `openapi-react-query` (generated from the Go OpenAPI spec) |
+| Quality            | Biome                                                                        |
+| i18n               | Paraglide                                                                    |
 
 ## Repository Layout
 
@@ -94,7 +94,7 @@ internal/auth/
 ├── api/rest/   # HTTP controllers (authentication, account, users, rbac, abac, audit, apikeys)
 ├── app/        # Application services (use cases) + repository wiring
 ├── domain/     # Entities, value objects, repository interfaces, domain events
-├── infra/      # sqlc-generated queries, repositories, ABAC resolver/cache
+├── infra/      # go-jet-generated code, repositories, ABAC resolver/cache
 ├── migrations/ # Goose SQL migrations
 └── module.go   # fx.Module that wires repositories, services, and routes
 ```
@@ -163,10 +163,7 @@ OpenAPI client for the web app (requires the backend to be running):
 bun run ./scripts/generate-api-client.ts
 ```
 
-Database query types are generated per module from the SQL in `internal/<module>/sql` using the
-module's `sqlc.yaml`.
-
 ## Quick Start (GoFrame)
 
-- https://goframe.org/quick
-- https://goframe.org/docs/design/project-mono-repo
+- <https://goframe.org/quick>
+- <https://goframe.org/docs/design/project-mono-repo>
