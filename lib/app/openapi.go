@@ -8,28 +8,6 @@ import (
 )
 
 const (
-	ScalarUITemplate = `
-<!doctype html>
-<html>
-  <head>
-    <title>API Reference</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  </head>
-
-  <body>
-    <div id="app"></div>
-
-    <script src="/scalar.js"></script>
-
-    <script>
-      Scalar.createApiReference('#app', {
-        url: 'http://127.0.0.1:8000/api-docs-json',
-      })
-    </script>
-  </body>
-</html>
-	`
 	SwaggerUITemplate = `
 <!-- HTML for static distribution bundle build -->
 <!doctype html>
@@ -54,20 +32,6 @@ const (
 	</script>
   </body>
 </html>`
-
-	OpenapiUITemplate = `
-	<!doctype html>
-	<html lang="en">
-	  <head>
-		<meta charset="UTF-8" />
-		<title>test</title>
-	  </head>
-	  <body>
-		<div id="openapi-ui-container" spec-url="{SwaggerUIDocUrl}" theme="dark"></div>
-		<script src="/openapiui.js"></script>
-	  </body>
-	</html>
-`
 )
 
 func enhanceOpenAPIDocs(srv *ghttp.Server, cfg config.OpenAPIConfig) {

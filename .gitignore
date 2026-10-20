@@ -19,6 +19,8 @@ output/
 manifest/output/
 temp/
 tmp/
+resource/public/openapi-ui
+resource/public/scalar
 temp.yaml
 bin
 **/config/config.yaml
