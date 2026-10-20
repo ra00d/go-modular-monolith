@@ -1,0 +1,23 @@
+{
+  "signin": {
+    "code": 0,
+    "message": "OK",
+    "data": {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMTgxNDA3MzQtYzc2Ny00NTUwLWJhNzMtN2E1MmUzMzRlNTljIiwiaWRlbnRpZmllciI6InJhYWRAZW1haWwuY29tIiwicm9sZSI6InVzZXIiLCJ0b2tlbl9pZCI6ImE3ZDJhNjVlLTUwZDUtNDE3ZC1iNThiLWNlNGRiMDM1NGVkNyIsInN1YiI6IjE4MTQwNzM0LWM3NjctNDU1MC1iYTczLTdhNTJlMzM0ZTU5YyIsImF1ZCI6WyJhcGkiXSwiZXhwIjoxNzg0NTgzMjE5LCJpYXQiOjE3ODQ1ODMyMTksImp0aSI6ImE3ZDJhNjVlLTUwZDUtNDE3ZC1iNThiLWNlNGRiMDM1NGVkNyJ9.clEQMx882yUfvFRM481eeuftIPGv4wip-RdDTyUHTwg",
+      "token_type": "Bearer",
+      "expires_at": 1784583219,
+      "user": {
+        "id": "18140734-c767-4550-ba73-7a52e334e59c",
+        "name": "Raad",
+        "email": "raad@email.com",
+        "email_verified": false,
+        "phone_verified": false,
+        "roles": [],
+        "status": "active",
+        "mfa_enabled": false,
+        "created_at": "2026-07-18T21:44:50.305253Z",
+        "updated_at": "2026-07-19T01:36:09.299859Z"
+      }
+    }
+  }
+}
