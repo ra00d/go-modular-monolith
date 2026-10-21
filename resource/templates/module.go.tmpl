@@ -1,0 +1,22 @@
+package {{ .ModuleName }}
+
+import (
+	"modular-monolith/internal/{{ .ModuleName }}/api/rest"
+	"modular-monolith/internal/{{ .ModuleName }}/app"
+	"modular-monolith/lib/db"
+
+	"github.com/jmoiron/sqlx"
+	"go.uber.org/fx"
+
+	"modular-monolith/internal/{{ .ModuleName }}/migrations"
+)
+
+var Module = fx.Module("{{ .ModuleName }}",
+	fx.Provide(func(DB *sqlx.DB) *app.Application {
+		app := app.Application{}
+		return &app
+	}),
+
+	fx.Invoke(rest.RegisterRoutes),
+	fx.Invoke(db.MigrateAndGenerateTypes(migrations.Migrations)),
+)

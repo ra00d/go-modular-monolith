@@ -1,0 +1,16 @@
+// Package rest
+// registers all controllers and handlers
+// to the http server
+package rest
+
+import (
+	"modular-monolith/lib/di"
+
+	"github.com/gogf/gf/v2/net/ghttp"
+)
+
+func RegisterRoutes(in di.AppBaseParams) {
+	srv := in.Server
+	srv.Group("/{{ .ModuleName }}", func(group *ghttp.RouterGroup) {
+	})
+}
