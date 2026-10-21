@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"embed"
 	"fmt"
+	"io/fs"
 	"log"
 	"path/filepath"
 	"time"
@@ -43,9 +44,13 @@ func MigrateAndGenerateTypes(migrations embed.FS) any {
 	}
 }
 
+func MigrateDB(module, genPath, dsn string, migrations fs.FS) {
+	migrateAndGenerateTypes(module, genPath, dsn, migrations)
+}
+
 // MigrateAndGenerateTypes function    migrate the database and generate models and sql-builders using jet
 // This operation is working per schema
-func migrateAndGenerateTypes(module string, genPath string, dsn string, FS embed.FS) {
+func migrateAndGenerateTypes(module string, genPath string, dsn string, FS fs.FS) {
 	DB, err := sql.Open("postgres", dsn)
 	if err != nil {
 		log.Fatal(err)
@@ -62,7 +67,7 @@ func migrateAndGenerateTypes(module string, genPath string, dsn string, FS embed
 	}
 }
 
-func migrateModule(db *sql.DB, module string, FS embed.FS) error {
+func migrateModule(db *sql.DB, module string, FS fs.FS) error {
 	// Create the schema first.
 	tx, err := db.Begin()
 	if err != nil {
