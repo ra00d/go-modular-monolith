@@ -195,7 +195,7 @@ func hasIdentifier(cmd RegisterAccount) bool {
 }
 
 var (
-	deref    = utils.Deref
+	deref    = utils.Deref[string]
 	nonEmpty = utils.NonEmpty
 )
 
@@ -273,7 +273,10 @@ func (u AccountService) VerifyPassword(
 		// prove against.
 		return users.ErrInvalidPassword
 	}
-	if err := bcrypt.CompareHashAndPassword([]byte(user.PasswordHash), []byte(password)); err != nil {
+	if err := bcrypt.CompareHashAndPassword(
+		[]byte(user.PasswordHash),
+		[]byte(password),
+	); err != nil {
 		return users.ErrInvalidPassword
 	}
 	return nil

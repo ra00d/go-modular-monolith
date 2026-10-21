@@ -38,7 +38,7 @@ var (
 
 var _ users.AccountRepository = (*AccountRepository)(nil)
 
-var nullable = utils.Nullable
+var nullable = utils.Nullable[string]
 
 // AccountRepository is the sqlx/jet-backed implementation of users.AccountRepository.
 type AccountRepository struct {
