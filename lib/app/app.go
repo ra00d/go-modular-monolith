@@ -15,7 +15,8 @@ import (
 )
 
 type App struct {
-	fx *fx.App
+	fx   *fx.App
+	deps []fx.Option
 }
 
 func NewApp(mods ...fx.Option) *App {
@@ -43,10 +44,9 @@ func NewApp(mods ...fx.Option) *App {
 		// }),
 	)
 	fxOtions = append(fxOtions, mods...)
-	app := fx.New(fxOtions...)
 
 	return &App{
-		fx: app,
+		deps: fxOtions,
 	}
 }
 
@@ -74,4 +74,9 @@ func NewLogger() *Logger {
 	}
 
 	return &logger
+}
+
+func (a *App) Run() {
+	a.fx = fx.New(a.deps...)
+	a.fx.Run()
 }

@@ -151,7 +151,3 @@ func RegisterServer(
 		},
 	})
 }
-
-func (a *App) Run() {
-	a.fx.Run()
-}
