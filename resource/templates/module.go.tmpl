@@ -1,14 +1,14 @@
 package {{ .ModuleName }}
 
 import (
-	"modular-monolith/internal/{{ .ModuleName }}/api/rest"
-	"modular-monolith/internal/{{ .ModuleName }}/app"
-	"modular-monolith/lib/db"
+	"{{ .GoModule }}/internal/{{ .ModuleName }}/api/rest"
+	"{{ .GoModule }}/internal/{{ .ModuleName }}/app"
+	"{{ .GoModule }}/lib/db"
 
 	"github.com/jmoiron/sqlx"
 	"go.uber.org/fx"
 
-	"modular-monolith/internal/{{ .ModuleName }}/migrations"
+	"{{ .ModuleName }}/internal/{{ .ModuleName }}/migrations"
 )
 
 var Module = fx.Module("{{ .ModuleName }}",
@@ -20,3 +20,7 @@ var Module = fx.Module("{{ .ModuleName }}",
 	fx.Invoke(rest.RegisterRoutes),
 	fx.Invoke(db.MigrateAndGenerateTypes(migrations.Migrations)),
 )
+
+func init(){
+
+  }
