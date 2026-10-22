@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"fmt"
 	"os"
 
 	"golang.org/x/mod/modfile"
@@ -18,6 +17,5 @@ func GetGoModulePath() string {
 		panic(err)
 	}
 
-	fmt.Println(mod.Module.Mod.Path)
 	return mod.Module.Mod.Path
 }
