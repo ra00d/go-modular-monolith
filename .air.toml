@@ -3,9 +3,9 @@ testdata_dir = "testdata"
 tmp_dir = "tmp"
 
 [build]
-args_bin = []
+args_bin = ["start"]
 bin = "./tmp/main"
-cmd = "go build -o ./tmp/main ./cmd/server/main.go"
+cmd = "go build -o ./tmp/main ./cmd/cli/main.go"
 # delay = 500
 exclude_dir = [
   "assets",
