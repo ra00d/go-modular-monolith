@@ -1,14 +1,15 @@
 package {{ .ModuleName }}
 
 import (
-	"{{ .GoModule }}/internal/{{ .ModuleName }}/api/rest"
-	"{{ .GoModule }}/internal/{{ .ModuleName }}/app"
+	"{{ .GoModule }}/{{ .ModulePath }}/api/rest"
+	"{{ .GoModule }}/{{ .ModulePath }}/app"
+	"{{ .GoModule }}/internal/modules"
 	"{{ .GoModule }}/lib/db"
 
 	"github.com/jmoiron/sqlx"
 	"go.uber.org/fx"
 
-	"{{ .ModuleName }}/internal/{{ .ModuleName }}/migrations"
+	"{{ .GoModule }}/{{ .ModulePath }}/migrations"
 )
 
 var Module = fx.Module("{{ .ModuleName }}",
@@ -21,6 +22,6 @@ var Module = fx.Module("{{ .ModuleName }}",
 	fx.Invoke(db.MigrateAndGenerateTypes(migrations.Migrations)),
 )
 
-func init(){
-
-  }
+func init() {
+	modules.Register(Module, "{{ .ModuleTitle }}")
+}

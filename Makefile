@@ -1,10 +1,11 @@
 # Go Modular Monolith — common development commands.
 #
 # Usage:
-#   make <target> [NAME=value] [MODULE=value]
+#   make <target> [NAME=value] [MODULE=value] [PATH=value]
 #
 # Examples:
 #   make dev
+#   make module-create NAME=orders
 #   make migration-create NAME=add_users_table MODULE=auth
 #   make migrate MODULE=auth
 
@@ -22,14 +23,14 @@ COVERAGE_FILE  ?= coverage.out
 .PHONY: help run dev build clean \
 	fmt fmt-check vet test test-race test-module cover \
 	lint check tidy \
-	migration-create migrate \
+	module-create migration-create migrate \
 	infra-up infra-down infra-restart infra-logs infra-ps db-shell \
 	web-dev web-build web-check web-lint web-format web-generate-api
 
 ##@ General
 
 help: ## Show this help
-	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m [NAME=value] [MODULE=value]\n"} \
+	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m [NAME=value] [MODULE=value] [PATH=value]\n"} \
 		/^[a-zA-Z0-9_.-]+:.*?##/ { printf "  \033[36m%-22s\033[0m %s\n", $$1, $$2 } \
 		/^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) }' $(MAKEFILE_LIST)
 
@@ -83,6 +84,15 @@ check: lint test ## Run lint and tests
 
 tidy: ## Tidy Go module dependencies
 	$(GO) mod tidy
+
+##@ Modules
+
+module-create: ## Create a module scaffold (NAME=..., PATH=...)
+	@test -n "$(NAME)" || { \
+		echo "usage: make module-create NAME=<module_name> [PATH=internal/modules/<module_name>]"; \
+		exit 1; \
+	}
+	$(GO) run $(MAIN) module:create "$(NAME)" $(if $(PATH),--path "$(PATH)")
 
 ##@ Database
 
